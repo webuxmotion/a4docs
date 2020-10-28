@@ -1,4 +1,4 @@
-import { User } from "src/auth/user.entity";
+import { User } from "../auth/user.entity";
 import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { DocPrivate } from "./doc-private.enum";
 

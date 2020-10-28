@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/auth/user.entity';
+import { User } from '../auth/user.entity';
 import { DocPrivate } from './doc-private.enum';
 import { Doc } from './doc.entity';
 import { DocRepository } from './doc.repository';

@@ -1,5 +1,5 @@
 import { InternalServerErrorException, Logger } from "@nestjs/common";
-import { User } from "src/auth/user.entity";
+import { User } from "../auth/user.entity";
 import { EntityRepository, Repository } from "typeorm";
 import { CreateDocDto } from "./dto/create-doc.dto";
 import { Doc } from './doc.entity';
