@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "29bba6db-530f-4d69-adaa-ba90ebd4fe3c",
+		"name": "NestJS Task Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Password123$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Password123$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/auth/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Doc",
+			"item": [
+				{
+					"name": "Get DOC by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken_user2}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/tasks/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get DOCS with filters",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{webuxmotion}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/docs?search=content",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"docs"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "content"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update DOC private",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{webuxmotion}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "private",
+									"value": "FALSE",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/docs/1/private",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"docs",
+								"1",
+								"private"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete DOC",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken_user2}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/docs/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"docs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all DOCS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{webuxmotion}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/docs",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"docs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new DOC",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken_user1}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Doc 3",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "This is content 3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/docs",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"docs"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
