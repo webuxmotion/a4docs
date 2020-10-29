@@ -1,6 +1,6 @@
 import { User } from "../auth/user.entity";
 import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
-import { DocPrivate } from "./doc-private.enum";
+import { DocPersonal } from "./doc-personal.enum";
 
 @Entity()
 export class Doc extends BaseEntity {
@@ -15,7 +15,7 @@ export class Doc extends BaseEntity {
   content: string;
 
   @Column()
-  private: DocPrivate;
+  personal: DocPersonal;
 
   @ManyToOne(type => User, user => user.docs, { eager: false })
   user: User;

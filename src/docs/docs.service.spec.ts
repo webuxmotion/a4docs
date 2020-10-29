@@ -1,6 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { DocPrivate } from './doc-private.enum';
+import { DocPersonal } from './doc-personal.enum';
 import { DocRepository } from './doc.repository';
 import { DocsService } from './docs.service';
 import { GetDocsFilterDto } from './dto/get-docs-filter.dto';
@@ -36,7 +36,7 @@ describe('DocsService', () => {
 
       expect(docRepository.getDocs).not.toHaveBeenCalled();
 
-      const filters: GetDocsFilterDto = { private: DocPrivate.TRUE, search: "Some search query" };
+      const filters: GetDocsFilterDto = { personal: DocPersonal.TRUE, search: "Some search query" };
 
       const result = await docsService.getDocs(filters, mockUser);
       
@@ -106,21 +106,21 @@ describe('DocsService', () => {
     });
   });
 
-  describe('updateDocPrivate', () => {
-    it('updates a doc private', async () => {
+  describe('updateDocPersonal', () => {
+    it('updates a doc personal', async () => {
       const save = jest.fn();
 
       docsService.getDocById = jest.fn().mockResolvedValue({
-        private: DocPrivate.TRUE,
+        personal: DocPersonal.TRUE,
         save,
       });
 
       expect(docsService.getDocById).not.toHaveBeenCalled();
       expect(save).not.toHaveBeenCalled();
-      const result = await docsService.updateDocPrivate(1, DocPrivate.FALSE, mockUser);
+      const result = await docsService.updateDocPersonal(1, DocPersonal.FALSE, mockUser);
       expect(docsService.getDocById).toHaveBeenCalled();
       expect(save).toHaveBeenCalled();
-      expect(result.private).toEqual(DocPrivate.FALSE);
+      expect(result.personal).toEqual(DocPersonal.FALSE);
     });
   });
 });

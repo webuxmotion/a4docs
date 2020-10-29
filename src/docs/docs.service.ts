@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../auth/user.entity';
-import { DocPrivate } from './doc-private.enum';
+import { DocPersonal } from './doc-personal.enum';
 import { Doc } from './doc.entity';
 import { DocRepository } from './doc.repository';
 import { CreateDocDto } from './dto/create-doc.dto';
@@ -41,13 +41,13 @@ export class DocsService {
     return found;
   }
 
-  async updateDocPrivate(
+  async updateDocPersonal(
     id: number,
-    privateParam: DocPrivate,
+    personal: DocPersonal,
     user: User,
   ): Promise<Doc> {
     const doc = await this.getDocById(id, user);
-    doc.private = privateParam;
+    doc.personal = personal;
     await doc.save();
 
     return doc;

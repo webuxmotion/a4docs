@@ -1,11 +1,11 @@
 import { IsIn, IsNotEmpty, IsOptional } from "class-validator";
-import { DocPrivate } from "../doc-private.enum";
-import DOC_PRIVATE from '../constants/private';
+import { DocPersonal } from "../doc-personal.enum";
+import DOC_PERSONAL from '../constants/personal';
 
 export class GetDocsFilterDto {
   @IsOptional()
-  @IsIn(DOC_PRIVATE)
-  private: DocPrivate;
+  @IsIn(DOC_PERSONAL)
+  personal: DocPersonal;
 
   @IsOptional()
   @IsNotEmpty()

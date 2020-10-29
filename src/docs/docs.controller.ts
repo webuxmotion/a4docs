@@ -2,12 +2,12 @@ import { Body, Controller, Delete, Get, Logger, Param, ParseIntPipe, Patch, Post
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/get-user.decorator';
 import { User } from 'src/auth/user.entity';
-import { DocPrivate } from './doc-private.enum';
+import { DocPersonal } from './doc-personal.enum';
 import { Doc } from './doc.entity';
 import { DocsService } from './docs.service';
 import { CreateDocDto } from './dto/create-doc.dto';
 import { GetDocsFilterDto } from './dto/get-docs-filter.dto';
-import { DocPrivateValidationPipe } from './pipes/doc-private-validation.pipe';
+import { DocPersonalValidationPipe } from './pipes/doc-personal-validation.pipe';
 
 @Controller('docs')
 @UseGuards(AuthGuard())
@@ -37,13 +37,13 @@ export class DocsController {
     return this.docsService.createDoc(createDocDto, user);
   }
 
-  @Patch('/:id/private')
-  updateDocPrivate(
+  @Patch('/:id/personal')
+  updateDocPersonal(
     @Param('id', ParseIntPipe) id: number,
-    @Body('private', DocPrivateValidationPipe) privateParam: DocPrivate,
+    @Body('personal', DocPersonalValidationPipe) personal: DocPersonal,
     @GetUser() user: User,
   ): Promise<Doc> {
-    return this.docsService.updateDocPrivate(id, privateParam, user);
+    return this.docsService.updateDocPersonal(id, personal, user);
   }
 
   @Delete('/:id')

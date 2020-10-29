@@ -4,7 +4,7 @@ import { EntityRepository, Repository } from "typeorm";
 import { CreateDocDto } from "./dto/create-doc.dto";
 import { Doc } from './doc.entity';
 import { GetDocsFilterDto } from "./dto/get-docs-filter.dto";
-import { DocPrivate } from "./doc-private.enum";
+import { DocPersonal } from "./doc-personal.enum";
 
 @EntityRepository(Doc)
 export class DocRepository extends Repository<Doc> {
@@ -14,13 +14,13 @@ export class DocRepository extends Repository<Doc> {
     filterDto: GetDocsFilterDto,
     user: User,
   ): Promise<Doc[]> {
-    const { private: privateFilter, search } = filterDto;
+    const { personal, search } = filterDto;
     const query = this.createQueryBuilder('doc');
 
     query.where('doc.userId = :userId', { userId: user.id });
 
-    if (privateFilter) {
-      query.andWhere('doc.private = :privateFilter', { privateFilter });
+    if (personal) {
+      query.andWhere('doc.personal = :personal', { personal });
     }
 
     if (search) {
@@ -46,7 +46,7 @@ export class DocRepository extends Repository<Doc> {
     const doc = new Doc();
     doc.title = title;
     doc.content = content;
-    doc.private = DocPrivate.TRUE;
+    doc.personal = DocPersonal.TRUE;
     doc.user = user;
 
     try {
