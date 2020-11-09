@@ -46,6 +46,15 @@ export class DocsController {
     return this.docsService.updateDocPersonal(id, personal, user);
   }
 
+  @Patch('/:id')
+  updateDoc(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() createDocDto: CreateDocDto,
+    @GetUser() user: User,
+  ): Promise<Doc> {
+    return this.docsService.updateDoc(id, createDocDto, user);
+  }
+
   @Delete('/:id')
   deleteDoc(
     @Param('id', ParseIntPipe) id: number,

@@ -21,6 +21,21 @@ export class DocsService {
     return this.docRepository.createDoc(createDocDto, user);
   }
 
+  async updateDoc(
+    id: number,
+    createDocDto: CreateDocDto,
+    user: User,
+  ): Promise<Doc> {
+    const { title, content } = createDocDto;
+    const doc = await this.getDocById(id, user);
+    
+    doc.title = title;
+    doc.content = content;
+    await doc.save();
+
+    return doc;
+  }
+
   getDocs(
     filterDto: GetDocsFilterDto,
     user: User,
